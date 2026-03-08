@@ -1,68 +1,127 @@
-# Sudoku Game Using iGraphics Library
+# Sudoku King 🎮
 
-This project is a **Sudoku Game** developed using the **iGraphics** library in **C++**. The game allows users to play Sudoku on a graphical interface, featuring different game levels and a clean user interface. It also includes features such as background sound and level selection.
+A Sudoku game developed in **C++** using the **iGraphics** library (an OpenGL/GLUT wrapper). The game features a full graphical interface with multiple difficulty levels, a scoring system, a leaderboard, and background music.
+
+---
 
 ## Features
 
-- **Graphical User Interface**: Built using the **iGraphics** library, providing a rich visual experience.
-- **Multiple Game Levels**: Includes Easy, Medium, and Hard levels for users to choose from.
-- **Sound Effects**: Background music and sound effects to enhance gameplay.
-- **Sudoku Solver**: Automatically solves the puzzle for users to compare their solution.
-- **Interactive Design**: Allows users to interact with the grid and enter numbers easily.
+- **Graphical User Interface** — Built using the iGraphics library on top of OpenGL/GLUT
+- **Multiple Difficulty Levels** — Easy, Medium, and Hard puzzles to choose from
+- **Score System** — Earn +10 points for correct placements, lose -5 for mistakes
+- **Mistake Counter & Timer** — Track errors and time elapsed during gameplay
+- **Leaderboard** — Top scores per level saved and displayed from `game_result.txt`
+- **Sound Effects** — Background music and click/keyboard sounds (toggle On/Off in-game)
+- **Keyboard & Mouse Input** — Enter digits via keyboard (1–9) or the on-screen number panel
+- **Arrow Key Navigation** — Move between grid cells using arrow keys
+
+---
+
+## Project Structure
+
+```
+SUDOKU-KING/
+├── iMain.cpp               # Main C++ source file with all game logic
+├── iGraphics.h             # iGraphics library header (OpenGL/GLUT wrapper)
+├── stb_image.h             # Image loading library (required by iGraphics)
+├── glut32.dll              # GLUT runtime DLL (must be in project root)
+├── game_result.txt         # Stores player scores and leaderboard data
+├── Name.txt                # Temporary player name file
+├── templates/              # Sudoku puzzle templates
+│   ├── 1.txt               # Easy puzzle
+│   ├── 2.txt               # Medium puzzle
+│   └── 3.txt               # Hard puzzle
+├── pictures/               # All game image assets (.bmp)
+│   ├── digits/             # Digit images (1.bmp – 9.bmp)
+│   ├── userdigit/          # User-entered digit images
+│   ├── level/              # Level indicator images
+│   └── *.bmp               # Background and UI images
+├── sound/                  # Sound files (not included due to size)
+│   ├── bg.wav              # Background music
+│   ├── playbg.wav          # In-game background music
+│   ├── mouse-click.wav     # Mouse click sound effect
+│   └── keyboard.wav        # Keyboard sound effect
+├── .vscode/                # VS Code build configuration
+│   ├── tasks.json
+│   ├── c_cpp_properties.json
+│   └── settings.json
+└── README.md
+```
+
+---
+
+## Prerequisites
+
+1. **MinGW** (GCC for Windows) — installed at `C:\MinGW`
+   - Download from [winlibs.com](https://winlibs.com) (MSVCRT, 32-bit)
+   - Add `C:\MinGW\bin` to your system **PATH**
+2. **Required `.lib` files** — place in `C:\MinGW\lib\`:
+   - `glut32.lib`
+   - `glaux.lib`
+   - `libglut32.a`
+3. **Visual Studio Code** with the **C/C++ Extension** by Microsoft
+
+---
+
+## Setup & Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Usha0070/L-1-T-1-Term-Project-Sudoku-Game-Using-i-Graphics.git
+cd L-1-T-1-Term-Project-Sudoku-Game-Using-i-Graphics
+```
+
+### 2. Open in VS Code
+
+```bash
+code .
+```
+
+### 3. Build & Run
+
+Press **`Ctrl + Shift + B`** — this triggers the pre-configured **Build & Run** task in `.vscode/tasks.json`, which compiles and launches the game automatically.
+
+**Or compile manually from terminal:**
+
+```bash
+gcc iMain.cpp -o SudokuKing -lopengl32 -lglu32 -lglut32 -lglaux -lstdc++ -lwinmm -w
+./SudokuKing
+```
+
+> ⚠️ Make sure `glut32.dll` is in the **same folder** as the compiled `.exe` before running.
+
+---
+
+## How to Play
+
+1. Launch the game and enter your name on the login screen
+2. From the main menu, optionally set your preferred difficulty under **Level**
+3. Click **Play Game** to start
+4. Click a cell on the grid to select it, then:
+   - Type a digit (1–9) using the keyboard, **or**
+   - Click a number from the on-screen panel
+5. Use **arrow keys** to navigate between cells
+6. Press the **Erase** button to clear a selected cell
+7. Click **Exit** to save your score and return to the menu
+
+---
 
 ## Video Demonstration
 
-Watch the game in action by clicking the link below:
-[Game Video Visualization](https://youtu.be/B1JGbQ2kJfk?si=J_yJpdN5U2SpDEWb)
+*https://youtu.be/B1JGbQ2kJfk?si=s6hhklzZRwyJfgS_*
 
-## Setup and Installation
+---
 
-### Prerequisites
-1. **C++ Compiler**: Make sure you have a C++ compiler installed (e.g., MinGW for Windows, or GCC for Linux/Mac).
-2. **iGraphics Library**: You need to have the **iGraphics** library installed on your system. Follow the [installation guide](https://github.com/igra/igraphics) for iGraphics setup.
+## Author
 
-### Steps to Run the Game
+**Md. Usha Khan**
+Bangladesh University of Engineering & Technology (BUET)
+Student ID: 2205065 | Session: 2022–2023
+Supervisor: Mustari Sadia, Lecturer, BUET
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Usha0070/L-1-T-1-Term-Project-Sudoku-Game-Using-i-Graphics.git
+---
 
-Navigate to the project directory:
+## License
 
-cd L-1-T-1-Term-Project-Sudoku-Game-Using-i-Graphics
-
-Compile the project:
-
-If you are using MinGW on Windows, you can compile the program using the following command:
-
-g++ -o sudoku_game iMain.cpp -lgraphics
-
-Run the game:
-
-After compiling, you can run the game with the following command:
-
-./sudoku_game
-Project Structure
-SUDOKU-GAME-USING-i-graphics-LIBRARY-main/
-├── iMain.cpp          # Main C++ file with game logic
-├── iGraphics.h        # iGraphics library header
-├── README.md          # Project documentation
-├── templates/          # Sudoku puzzle templates
-│   ├── 1.txt
-│   ├── 2.txt
-│   └── 3.txt
-├── pictures/          # Game assets (images)
-│   ├── About_us.bmp
-│   ├── Game_level.bmp
-│   └── ...
-├── sound/             # Sound files
-│   ├── bg.wav
-│   └── ...
-└── README.md          # This file
-Contributing
-
-If you want to contribute to this project, feel free to fork it and submit a pull request. Contributions are always welcome!
-
-License
-
-This project is open-source and available under the MIT License
+This project is open-source and available under the [MIT License](LICENSE).
